@@ -3,7 +3,7 @@ ARG BUILD_ARCH
 FROM ghcr.io/home-assistant/${BUILD_ARCH}-base-debian:bullseye
 
 # Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
 # hadolint ignore=DL3003
