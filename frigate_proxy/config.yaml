@@ -22,6 +22,8 @@ devices: []
 usb: false
 tmpfs: false
 full_access: false
+hassio_role: default
+init: false
 environment: {}
 options:
   server: "frigate.local:5000"
