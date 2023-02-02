@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eE
 
-SUPERVISOR_VERSON="$(curl -s https://version.home-assistant.io/stable.json | jq -e -r '.supervisor')"
+SUPERVISOR_VERSON="$(curl -s https://version.home-assistant.io/dev.json | jq -e -r '.supervisor')"
 DOCKER_TIMEOUT=30
 DOCKER_PID=0
 
@@ -81,7 +81,7 @@ function run_supervisor() {
         --name hassio_supervisor \
         --privileged \
         --security-opt seccomp=unconfined \
-        --security-opt apparmor:unconfined \
+        --security-opt apparmor=unconfined \
         -v /run/docker.sock:/run/docker.sock:rw \
         -v /run/dbus:/run/dbus:ro \
         -v /run/udev:/run/udev:ro \
