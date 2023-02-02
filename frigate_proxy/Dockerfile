@@ -1,18 +1,16 @@
-ARG BUILD_ARCH
-# hadolint ignore=DL3006
-FROM ghcr.io/home-assistant/${BUILD_ARCH}-base-debian:bullseye
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-# Set shell
-# SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# Install mosquitto + auth plugin
+WORKDIR /usr/src
 
-# Setup base
-# hadolint ignore=DL3003
-RUN apt-get -qq update \
-    && apt-get -qq install --no-install-recommends -y nginx \
-    && (apt-get autoremove -y; apt-get autoclean -y)
+RUN apt-get update \
+    && apt-get install -qy --no-install-recommends nginx 
 
 # Copy root filesystem
 COPY rootfs /
+
+WORKDIR /
 
 # Build arguments
 ARG BUILD_ARCH
